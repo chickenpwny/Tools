@@ -55,11 +55,11 @@ for FileLine in $File ; do
   while IFS= read -r Line ; do
     gobuster dns -w word.txt -d $Line -t 60 $(WildCard) \
     | tee /dev/stderr | grep Found | sed 's/^.*Found: /''/g' > gobuster/$Line
-  done < $FileLine 
-  for FileLine in gobuster/*.com ; do
-    while IFS= read -r Line ; do
-      python3 /root/Desktop/tools/dirsearch/dirsearch.py -u https://$Line -w /root/Desktop/tools/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt \
-      -r '--recursive-level-max=5' -e txt,bak,php,html -t 100 | tee /dev/stderr > dir$Line.txt
-    done # < $Line
-  done # < $FileLine
-done # < $File
+  done < $FileLine
+done < $File
+for FileLine in gobuster/*.com ; do
+  while IFS= read -r Line ; do
+    python3 /root/Desktop/tools/dirsearch/dirsearch.py -u https://$Line -w /root/Desktop/tools/SecLists/Discovery/Web-Content/raft-medium-directories-lowercase.txt \
+    -r '--recursive-level-max=5' -e txt,bak,php,html -t 100 | tee /dev/stderr > dir$Line.txt
+  done < $FileLine
+done
