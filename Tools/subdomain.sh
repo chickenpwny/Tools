@@ -17,9 +17,8 @@ usage()
        ▒▒▒▒▒▒░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓
         HELP: Compile a list of domains to fuzz. it will enter the domains
         into gobuster and fuzz the domain provided.
-        --f     File with domains you wish to fuzz.
-        --d     Dictionary
-        --o     Output
+        -f     File with domains you wish to fuzz.
+        -h     Hostname / domain name
         --h     Help"
 }
 
